@@ -1,0 +1,4 @@
+[2025-11-29T21:02:04.590Z] app.whenReady
+[2025-11-29T21:02:04.591Z] createWindow called
+[2025-11-29T21:07:01.829Z] window closed
+[2025-11-29T21:07:01.829Z] window-all-closed

@@ -1,0 +1,58 @@
+{
+  "name": "wois-assistant-frontend",
+  "version": "1.0.0",
+  "description": "Woi's AI trading assistant",
+  "author": "Woi",
+  "main": "public/electron.js",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "html2canvas": "^1.4.1",
+    "lightweight-charts": "^5.0.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "recharts": "^3.5.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^39.2.4",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.woi.assistant",
+    "productName": "Woi's Assistant",
+    "files": [
+      "build/**/*",
+      "public/electron.js",
+      "../backend/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  }
+}
