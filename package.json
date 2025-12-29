@@ -1,58 +1,44 @@
 {
-  "name": "wois-assistant-frontend",
+  "name": "wois-assistant-shell",
   "version": "1.0.0",
-  "description": "Woi's AI trading assistant",
-  "author": "Woi",
-  "main": "public/electron.js",
+  "main": "main.js",
   "private": true,
-  "homepage": ".",
-  "dependencies": {
-    "html2canvas": "^1.4.1",
-    "lightweight-charts": "^5.0.9",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "recharts": "^3.5.1"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "dev": "concurrently \"npm:backend\" \"npm:frontend\" \"npm:start-electron\"",
+    "backend": "cd .. && python -m backend.main",
+    "frontend": "cd ../frontend && npm start",
+    "start-electron": "electron .",
+    "build": "cd ../frontend && npm run build && cd ../electron && electron-builder"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "electron": "^29.0.0"
   },
   "devDependencies": {
-    "electron": "^39.2.4",
-    "electron-builder": "^26.0.12"
+    "concurrently": "^8.2.0",
+    "electron-builder": "^24.0.0"
   },
   "build": {
     "appId": "com.woi.assistant",
-    "productName": "Woi's Assistant",
-    "files": [
-      "build/**/*",
-      "public/electron.js",
-      "../backend/**/*"
-    ],
+    "productName": "Woi Assistant",
     "directories": {
-      "buildResources": "assets"
+      "output": "../dist"
     },
+    "files": [
+      "../frontend/build/**/*",
+      "../backend/**/*",
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend",
+        "to": "backend"
+      }
+    ],
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "../frontend/public/favicon.ico"
     }
   }
 }
